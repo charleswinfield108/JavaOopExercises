@@ -59,4 +59,12 @@ public class BankAccount {
     public List<String> getTransactions() {
         return transactions;
     }
+
+    @Override
+    public String toString() {
+        return "BankAccount{" +
+                "accountNumber='" + accountNumber + '\'' +
+                ", balance=" + balance +
+                '}';
+    }
 }

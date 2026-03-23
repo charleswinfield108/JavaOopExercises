@@ -28,4 +28,13 @@ public class SavingsAccount extends BankAccount {
             System.out.println("Deposit amount must be positive.");
         }
     }
+
+    @Override
+    public String toString() {
+        return "SavingsAccount{" +
+                "accountNumber='" + getAccountNumber() + '\'' +
+                ", balance=" + getBalance() +
+                ", interestRate=" + (interestRate * 100) + "%" +
+                '}';
+    }
 }

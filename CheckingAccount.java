@@ -32,4 +32,13 @@ public class CheckingAccount extends BankAccount {
                              ") and overdraft limit (" + overdraftLimit + ").");
         }
     }
+
+    @Override
+    public String toString() {
+        return "CheckingAccount{" +
+                "accountNumber='" + getAccountNumber() + '\'' +
+                ", balance=" + getBalance() +
+                ", overdraftLimit=" + overdraftLimit +
+                '}';
+    }
 }

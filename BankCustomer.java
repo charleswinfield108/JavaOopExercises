@@ -38,4 +38,19 @@ public class BankCustomer {
         }
         System.out.println("Total Balance: $" + totalBalance());
     }
+
+    public void generateReport() {
+        System.out.println("\n========== BANKING REPORT ==========");
+        System.out.println("Customer: " + name);
+        System.out.println("Number of Accounts: " + accounts.size());
+        System.out.println("-----------------------------------");
+        
+        for (int i = 0; i < accounts.size(); i++) {
+            System.out.println((i + 1) + ". " + accounts.get(i).toString());
+        }
+        
+        System.out.println("-----------------------------------");
+        System.out.println("Total Balance: $" + String.format("%.2f", totalBalance()));
+        System.out.println("====================================");
+    }
 }
