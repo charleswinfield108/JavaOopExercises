@@ -30,7 +30,7 @@ public class Main {
         
         System.out.println("\nDepositing $500 with 5% interest:");
         savingsAccount.deposit(500);
-         savingsAccount.deposit(2500);
+        savingsAccount.deposit(2500);
 
         // Exercise 3: Creating a Checking Account
         // Create a CheckingAccount instance
@@ -53,6 +53,22 @@ public class Main {
         // Exercise 4: Managing Customer's Accounts
         // Create a BankCustomer instance
         // Add multiple accounts and display total balance
+        System.out.println("\n--- Exercise 4: Managing Customer's Accounts ---");
+        BankCustomer customer = new BankCustomer("John Doe");
+        System.out.println("Customer: " + customer.getName());
+        
+        // Create multiple accounts
+        BankAccount acc1 = new BankAccount("ACC002", 2000.0);
+        SavingsAccount acc2 = new SavingsAccount("SAV002", 3000.0, 0.03);
+        CheckingAccount acc3 = new CheckingAccount("CHK002", 1500.0, 300.0);
+        
+        // Add accounts to customer
+        customer.addAccount(acc1);
+        customer.addAccount(acc2);
+        customer.addAccount(acc3);
+        
+        // Display all accounts and total balance
+        customer.displayAccounts();
 
         // Exercise 5: Transaction History
         // Add transactions to accounts and retrieve history
