@@ -35,6 +35,20 @@ public class Main {
         // Exercise 3: Creating a Checking Account
         // Create a CheckingAccount instance
         // Perform withdrawal operations with overdraft
+        System.out.println("\n--- Exercise 3: Checking Account ---");
+        CheckingAccount checkingAccount = new CheckingAccount("CHK001", 500.0, 200.0);
+        System.out.println("Checking Account Number: " + checkingAccount.getAccountNumber());
+        System.out.println("Initial Balance: $" + checkingAccount.getBalance());
+        System.out.println("Overdraft Limit: $" + checkingAccount.getOverdraftLimit());
+        
+        System.out.println("\nWithdrawing $600 (exceeds balance, uses overdraft):");
+        checkingAccount.withdraw(600);
+        
+        System.out.println("\nWithdrawing $50 (within remaining overdraft):");
+        checkingAccount.withdraw(50);
+        
+        System.out.println("\nAttempting to withdraw $200 (exceeds overdraft limit):");
+        checkingAccount.withdraw(200);
 
         // Exercise 4: Managing Customer's Accounts
         // Create a BankCustomer instance

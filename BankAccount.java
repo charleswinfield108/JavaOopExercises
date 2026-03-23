@@ -32,4 +32,8 @@ public class BankAccount {
             System.out.println("Withdrawal amount must be positive and less than or equal to the current balance.");
         }
     }
+
+    protected void setBalance(double newBalance) {
+        this.balance = newBalance;
+    }
 }
