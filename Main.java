@@ -72,6 +72,15 @@ public class Main {
 
         // Exercise 5: Transaction History
         // Add transactions to accounts and retrieve history
+        System.out.println("\n--- Exercise 5: Transaction History ---");
+        BankAccount transAccount = new BankAccount("TX001", 1000.0);
+        
+        transAccount.deposit(500);
+        transAccount.withdraw(200);
+        transAccount.deposit(300);
+        transAccount.withdraw(100);
+        
+        transAccount.getTransactionHistory();
 
         // Exercise 6: Generate Banking Report
         // Generate and display a customer's banking report
