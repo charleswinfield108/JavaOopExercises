@@ -94,9 +94,37 @@ public class Main {
 
         // Exercise 7: Update Interest Rates
         // Update the interest rate and observe calculations
+        System.out.println("\n--- Exercise 7: Update Interest Rates ---");
+        SavingsAccount rateAccount = new SavingsAccount("SAV004", 1000.0, 0.02);
+        System.out.println("Initial Interest Rate: " + (rateAccount.getInterestRate() * 100) + "%");
+        System.out.println("Depositing $1000:");
+        rateAccount.deposit(1000);
+        
+        System.out.println("\nUpdating interest rate to 5%:");
+        rateAccount.setInterestRate(0.05);
+        System.out.println("New Interest Rate: " + (rateAccount.getInterestRate() * 100) + "%");
+        System.out.println("Depositing $500 with new rate:");
+        rateAccount.deposit(500);
 
         // Exercise 8: Override Withdrawal Method
         // Demonstrate overridden withdrawal method
+        System.out.println("\n--- Exercise 8: Override Withdrawal Method ---");
+        CheckingAccount overdraftAccount = new CheckingAccount("CHK004", 300.0, 200.0);
+        System.out.println("Checking Account Balance: $" + overdraftAccount.getBalance());
+        System.out.println("Overdraft Limit: $" + overdraftAccount.getOverdraftLimit());
+        System.out.println("Total Available: $" + (overdraftAccount.getBalance() + overdraftAccount.getOverdraftLimit()));
+        
+        System.out.println("\nAttempting to withdraw $400 (within balance + overdraft):");
+        overdraftAccount.withdraw(400);
+        System.out.println("New Balance: $" + overdraftAccount.getBalance());
+        
+        System.out.println("\nAttempting to withdraw $150 (within remaining overdraft):");
+        overdraftAccount.withdraw(150);
+        System.out.println("New Balance: $" + overdraftAccount.getBalance());
+        
+        System.out.println("\nAttempting to withdraw $300 (exceeds total available):");
+        overdraftAccount.withdraw(300);
+        System.out.println("Final Balance: $" + overdraftAccount.getBalance());
 
         // Complete all exercises and print results
     }
