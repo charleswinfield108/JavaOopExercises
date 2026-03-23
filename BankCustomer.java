@@ -2,8 +2,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BankCustomer {
-    private String name;
-    private List<BankAccount> accounts;
+    private final String name;
+    private final List<BankAccount> accounts;
 
     public BankCustomer(String name) {
         this.name = name;
