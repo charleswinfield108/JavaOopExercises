@@ -84,8 +84,39 @@ public class Main {
         System.out.println("\nTotal Balance Across All Accounts: $" + customer.totalBalance());
 
         // Exercise 5: Transaction History
-
+        // Create a BankAccount and demonstrate transaction recording
         // Add transactions to accounts and retrieve history
+        System.out.println("\n--- Exercise 5: Transaction History ---");
+        BankAccount account3 = new BankAccount("ACC003", 1000);
+        System.out.println("Account: " + account3.getAccountNumber() + " | Initial Balance: $" + account3.getBalance());
+        System.out.println("Initial Transaction History (empty): " + account3.getTransactionHistory());
+        
+        System.out.println("\nPerforming transactions:");
+        System.out.println("\nTransaction #1: Deposit $500");
+        account3.deposit(500);
+        
+        System.out.println("\nTransaction #2: Withdraw $200");
+        account3.withdraw(200);
+        
+        System.out.println("\nTransaction #3: Deposit $300");
+        account3.deposit(300);
+        
+        System.out.println("\nTransaction #4: Try to withdraw $2000 (will be rejected - not recorded)");
+        account3.withdraw(2000);
+        
+        System.out.println("\nTransaction #5: Withdraw $100");
+        account3.withdraw(100);
+        
+        System.out.println("\n--- Transaction History Report ---");
+        System.out.println("Account: " + account3.getAccountNumber());
+        System.out.println("Final Balance: $" + account3.getBalance());
+        System.out.println("Total Transactions Recorded: " + account3.getTransactionHistory().size());
+        System.out.println("\nTransaction List (in order):");
+        int transNum = 1;
+        for (String transaction : account3.getTransactionHistory()) {
+            System.out.println("  " + transNum + ". " + transaction);
+            transNum++;
+        }
 
         // Exercise 6: Generate Banking Report
         // Generate and display a customer's banking report
