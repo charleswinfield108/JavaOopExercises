@@ -10,6 +10,15 @@ public class Main {
         // Exercise 1: Creating a Bank Account
         // Create a BankAccount instance
         // Perform deposit and withdrawal operations.
+        System.out.println("\n--- Exercise 1: Bank Account ---");
+        BankAccount account1 = new BankAccount("ACC001", 1000);
+        System.out.println("Account: " + account1.getAccountNumber() + " | Initial Balance: $" + account1.getBalance());
+        
+        account1.deposit(500);    // Valid deposit
+        account1.withdraw(200);   // Valid withdrawal
+        account1.withdraw(2000);  // Invalid withdrawal (exceeds balance)
+        
+        System.out.println("Final Balance: $" + account1.getBalance());
 
         // Exercise 2: Creating a Savings Account
         // Create a SavingsAccount instance
