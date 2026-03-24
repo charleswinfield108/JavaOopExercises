@@ -1,0 +1,494 @@
+# 🤖 AI_SPEC — JavaOopExercises (Main)
+
+**Project:** JavaOopExercises  
+**Last Updated:** March 24, 2026  
+**Status:** Active
+
+---
+
+## 1. Project Identity & Scope
+
+### 1.1 Project Overview
+
+**JavaOopExercises** is an educational Java project designed to teach Object-Oriented Programming (OOP) principles through the implementation of a progressive banking system. Learners develop increasingly complex banking features, starting with basic class creation and advancing to inheritance, method overriding, collections, and system-wide reporting.
+
+### 1.2 Project Scope (IN)
+
+✅ **In Scope:**
+- Creating core banking classes (BankAccount, SavingsAccount, CheckingAccount)
+- Implementing OOP fundamentals: encapsulation, inheritance, polymorphism
+- Building customer account management systems
+- Tracking transaction histories
+- Generating banking reports
+- Progressive exercise completion from Exercise 1 through Exercise 8
+- Demonstrating features in the `Main.main()` method via `System.out.println()`
+- Single JVM execution environment with standard Java libraries only
+
+### 1.3 Project Scope (OUT)
+
+❌ **Out of Scope:**
+- Database persistence or file I/O beyond in-memory operations
+- Network communication or REST APIs
+- UI/GUI implementations (console output only)
+- Multi-threading or concurrency
+- External framework dependencies (Spring, Hibernate, etc.)
+- Deployment to production environments
+- User authentication or authorization systems
+- Real banking compliance or security protocols
+- Third-party payment processing integrations
+
+### 1.4 Target Audience
+
+- Java learners (beginner to intermediate level)
+- Students studying OOP concepts
+- Self-paced learners or course participants
+- Instructors/mentors reviewing student implementations
+
+---
+
+## 2. Architecture & Repository Structure
+
+### 2.1 Repo Structure
+
+```
+JavaOopExercises/
+├── Main.java                          # Entry point; contains main method for all exercises
+├── Person.java                        # Example reference class (Exercise 0)
+├── README.md                          # Exercise descriptions and requirements
+├── ai docs/
+│   └── ai-spec.md                     # This specification document
+├── 🤖 AI_FEATURE_<Feature-Name>.md    # Individual feature implementation guides
+├── 🤖 AI_SPEC — Project Specification.md  # Project-level AI documentation
+└── .git/                              # Git version control
+```
+
+### 2.2 Class Architecture
+
+#### **Exercise 1–3: Banking Account Hierarchy**
+
+```
+BankAccount (base class)
+├── SavingsAccount (extends BankAccount)
+└── CheckingAccount (extends BankAccount)
+```
+
+**BankAccount:**
+- Attributes: `accountNumber` (String), `balance` (double)
+- Methods: `deposit()`, `withdraw()`, `recordTransaction()`, `getTransactionHistory()`
+
+**SavingsAccount:**
+- Additional attribute: `interestRate` (double)
+- Overrides: `deposit()` method with interest calculation
+
+**CheckingAccount:**
+- Additional attribute: `overdraftLimit` (double)
+- Overrides: `withdraw()` method with overdraft allowance
+
+#### **Exercise 4: Customer Management**
+
+```
+BankCustomer
+├── name (String)
+├── accounts (Collection of BankAccount)
+└── Methods: addAccount(), totalBalance(), generateReport()
+```
+
+#### **Exercise 5: Transaction Tracking**
+
+```
+Transaction History (stored per BankAccount)
+├── List<String> transactions
+└── Methods: recordTransaction(), getTransactionHistory()
+```
+
+### 2.3 Data Flow
+
+1. User executes `Main.main()`
+2. Main creates instances of banking classes
+3. Operations (deposit/withdraw) execute and update balance
+4. Transactions are recorded to the transaction list
+5. Results printed to console via `System.out.println()`
+
+---
+
+## 3. Allowed Tech & Constraints
+
+### 3.1 Technology Stack
+
+| Category | Technology | Version | Notes |
+|----------|-----------|---------|-------|
+| **Language** | Java | 8+ (JDK 8 or higher) | No language version restrictions |
+| **Build Tools** | None required for exercises | — | Plain Java compilation (javac) sufficient |
+| **Libraries** | Java Standard Library only | — | `java.util.*`, `java.lang.*` permitted |
+| **IDE / Editor** | VS Code + Extension Pack for Java | — | Official recommended environment |
+
+### 3.2 Technical Constraints
+
+- ✅ **Allowed:**
+  - Standard Java class definition and inheritance
+  - `java.util.ArrayList`, `java.util.LinkedList`, or similar Collections
+  - Getter/setter methods
+  - String concatenation and formatting
+  - Basic arithmetic operations (double floating-point)
+  - `System.out.println()` for console output
+  - Exception handling with try-catch (optional, not required)
+
+- ❌ **Forbidden:**
+  - External JAR dependencies or Maven/Gradle configurations
+  - Database connections (JDBC, JPA, etc.)
+  - Reflection APIs
+  - Serialization (unless for student exploration)
+  - File I/O or stream operations
+  - Lambdas or advanced functional programming constructs (unless studying Exercise 8+)
+  - Static state or singleton patterns (except Main.main())
+
+### 3.3 Performance & Scalability Constraints
+
+- Maximum expected accounts per customer: 10–20 (in-memory)
+- Maximum expected transactions per account: 100–200 (in-memory)
+- All operations must complete in <100ms for demo purposes
+- No optimization for production-scale scenarios required
+
+---
+
+## 4. Coding Standards & Conventions
+
+### 4.1 Naming Conventions
+
+| Construct | Convention | Example |
+|-----------|-----------|---------|
+| **Classes** | PascalCase | `BankAccount`, `SavingsAccount`, `BankCustomer` |
+| **Methods** | camelCase, verb-first | `deposit()`, `withdraw()`, `getTransactionHistory()` |
+| **Attributes** | camelCase, noun-based | `balance`, `accountNumber`, `interestRate` |
+| **Constants** | UPPER_SNAKE_CASE (if any) | `DEFAULT_INTEREST_RATE` |
+| **Packages** | Not used; all classes in default package | — |
+
+### 4.2 Class Definition Standards
+
+**Structure for all classes:**
+
+```java
+public class ClassName {
+    // 1. Private attributes declared first
+    private String attribute1;
+    private double attribute2;
+    
+    // 2. Constructor(s)
+    public ClassName(String attribute1, double attribute2) {
+        this.attribute1 = attribute1;
+        this.attribute2 = attribute2;
+    }
+    
+    // 3. Public methods (business logic)
+    public void methodName() {
+        // Implementation
+    }
+    
+    // 4. Getter/Setter methods (if needed)
+    public String getAttribute1() {
+        return attribute1;
+    }
+}
+```
+
+### 4.3 Method Implementation Standards
+
+**Deposit/Withdraw Methods:**
+
+```java
+public void deposit(double amount) {
+    if (amount > 0) {
+        balance += amount;
+        recordTransaction("Deposit: +" + amount);
+    }
+}
+
+public void withdraw(double amount) {
+    if (amount > 0 && amount <= balance) {
+        balance -= amount;
+        recordTransaction("Withdrawal: -" + amount);
+    }
+}
+```
+
+**Output Format for Main.main():**
+
+```java
+System.out.println("Account Number: " + account.getAccountNumber());
+System.out.println("Balance: $" + account.getBalance());
+System.out.println("---");
+System.out.println(account.getTransactionHistory());
+```
+
+### 4.4 Encapsulation Standards
+
+- **All attributes must be private**
+- **Provide public getters for read-only attributes** (at minimum)
+- **Provide setters only where business logic permits** (e.g., `updateInterestRate()`)
+- **Validation in constructors and setters** (balance ≥ 0, etc.)
+
+### 4.5 Inheritance Standards
+
+- **SavingsAccount and CheckingAccount extend BankAccount**
+- **Override methods explicitly with `@Override` annotation** (optional but recommended)
+- **Call parent constructor with `super()` when appropriate**
+- **Only override methods when adding specialized behavior**
+
+### 4.6 Documentation Standards
+
+**Javadoc comments for public methods (optional but recommended):**
+
+```java
+/**
+ * Deposits the specified amount into the account.
+ * Records the transaction for history tracking.
+ * 
+ * @param amount the amount to deposit (must be > 0)
+ */
+public void deposit(double amount) {
+    // Implementation
+}
+```
+
+**Inline comments for complex logic:**
+```java
+// Allow withdrawal if balance is sufficient OR if overdraft limit covers the excess
+if (amount <= balance || (amount - balance) <= overdraftLimit) {
+    // Process withdrawal
+}
+```
+
+### 4.7 Error Handling Standards
+
+- **No mandatory exception throwing**
+- **Silent validation permitted** (check condition, skip invalid operation)
+- **Optional: Use IllegalArgumentException for invalid inputs**
+- **Example:**
+  ```java
+  if (amount <= 0) {
+      throw new IllegalArgumentException("Amount must be positive");
+  }
+  ```
+
+---
+
+## 5. Global "Definition of Done" & Cross-Feature Rules
+
+### 5.1 Exercise Completion Checklist
+
+Each exercise is considered **DONE** when ALL of the following criteria are met:
+
+#### **Code Quality**
+- [ ] Class follows naming and structure standards (Section 4.1–4.5)
+- [ ] All attributes are private
+- [ ] Constructors properly initialize all attributes
+- [ ] Methods implement the specified behavior without extraneous logic
+- [ ] No compiler warnings; code compiles cleanly
+
+#### **Functionality**
+- [ ] All methods specified in README.md are implemented
+- [ ] Method behavior matches specifications (balance checks, interest calculations, etc.)
+- [ ] Inheritance hierarchy is correctly implemented (if applicable)
+- [ ] Collections are properly used (if applicable)
+
+#### **Testing & Demonstration**
+- [ ] Implementation is demonstrated in `Main.main()`
+- [ ] Output clearly shows feature behavior via `System.out.println()`
+- [ ] All edge cases demonstrated (e.g., insufficient balance, interest calculation)
+- [ ] Code executes without runtime errors
+
+#### **Version Control**
+- [ ] Changes committed to Git with a descriptive message
+- [ ] Commit message follows format: `exercise-<N>: <brief description>`
+  - Example: `exercise-1: implement BankAccount with deposit/withdraw`
+
+---
+
+### 5.2 Cross-Feature Integration Rules
+
+These rules apply when multiple classes or exercises interact:
+
+#### **Rule 1: Consistent State Management**
+- All balance modifications **must** go through `deposit()` or `withdraw()` methods
+- Direct balance manipulation is **forbidden**
+- Balance state must always be consistent across method calls
+
+#### **Rule 2: Transaction Recording**
+- **Every** deposit or withdrawal must call `recordTransaction()` (Exercise 5+)
+- Transaction strings follow format: `"[Operation]: [±Amount]"` or `"[Operation]: [Amount] with [detail]"`
+- Transaction history is never cleared during exercise (append-only)
+
+#### **Rule 3: Inheritance Correctness**
+- SavingsAccount cannot lose interest-on-deposit behavior when overriding
+- CheckingAccount cannot eliminate overdraft allowance when overriding `withdraw()`
+- All inherited attributes and methods remain accessible
+
+#### **Rule 4: Collection Safety**
+- BankCustomer's account list must not allow `null` entries
+- Validate account addition before adding to collection
+- Iterator or enhanced for-loop when traversing collections
+
+#### **Rule 5: Output Consistency**
+- All console output in `Main.main()` method
+- Use `System.out.println()` exclusively (no `System.out.print()` variations)
+- Output order: operation → result → separator (e.g., "---" or blank line)
+- Currency formatted as "$X.XX" when displaying balances
+
+#### **Rule 6: Exercise Progression**
+- Exercises build on previous implementations
+- Exercise N implementation must not break Exercise N-1 functionality
+- Earlier classes remain available and functional for later exercises
+
+---
+
+### 5.3 Pre-Implementation Checklist
+
+**Before starting any exercise, review:**
+
+1. ✅ Read target exercise description in README.md
+2. ✅ Review relevant section in this AI Specification
+3. ✅ Check if inheritance or collections are required
+4. ✅ Plan class structure (attributes, methods, constructors)
+5. ✅ Identify transaction recording points (if Exercise 5+)
+6. ✅ Prepare console output format for Main.main()
+7. ✅ Verify no external dependencies needed
+
+---
+
+### 5.4 Post-Implementation Validation
+
+**After implementing each exercise:**
+
+1. ✅ Code compiles without warnings: `javac *.java`
+2. ✅ Program executes successfully: `java Main`
+3. ✅ Output is clear and demonstrates all required features
+4. ✅ All edge cases handled gracefully
+5. ✅ Git commit added with exercise tag
+6. ✅ No uncommitted changes remain
+
+---
+
+## 6. Special Rules & Guidelines
+
+### 6.1 Main.main() Structure
+
+The Main class must remain a single file with structured sections:
+
+```java
+public class Main {
+    public static void main(String[] args) {
+        // Exercise 0: Person class example
+        // Section comment for each exercise
+        // Demonstration code for that exercise
+        // Blank line separator between exercises
+    }
+}
+```
+
+### 6.2 Person Class (Reference)
+
+The `Person.java` example class **must not be modified**. It serves as a reference for:
+- Proper class structure
+- Getter method implementation
+- Constructor pattern
+
+### 6.3 Floating-Point Precision
+
+When working with `double` balances:
+- Do not rely on exact equality comparisons (`balance == 100.0`)
+- Use epsilon comparison for validation if needed
+- Assume normal precision sufficient for exercise purposes
+
+### 6.4 Git Commit Discipline
+
+| Commit Type | Format | Example |
+|-------------|--------|---------|
+| Exercise completion | `exercise-<N>: <description>` | `exercise-1: implement BankAccount` |
+| Bug fix | `fix: <description>` | `fix: correct SavingsAccount interest calculation` |
+| Refactor | `refactor: <description>` | `refactor: improve BankAccount structure` |
+| Initial setup | `initial: fresh start` | — |
+
+### 6.5 AI Assistance Role
+
+When using AI tools (GitHub Copilot, ChatGPT, etc.):
+- ✅ Use AI to suggest method signatures and basic implementations
+- ✅ Use AI to explain OOP concepts and design patterns
+- ✅ Use AI to debug compilation errors
+- ❌ Do not copy entire exercise implementations
+- ❌ Do not bypass learning by using AI for all logic
+- ❌ Do not modify specifications or requirements
+
+---
+
+## 7. Troubleshooting & Common Issues
+
+| Issue | Cause | Solution |
+|-------|-------|----------|
+| `cannot find symbol` | Class not defined or typo | Check class name matches exactly (case-sensitive) |
+| Compilation fails | Missing method implementation | Review required methods in README.md |
+| Balance doesn't update | Mutation method not called | Ensure `deposit()`/`withdraw()` are called, not direct manipulation |
+| Transaction history empty | `recordTransaction()` not called | Add `recordTransaction()` call after balance update |
+| Inheritance not working | `extend` misspelled or wrong parent | Use `extends` keyword with correct parent class name |
+| Output not showing | `println()` not invoked | Add `System.out.println()` in Main.main() |
+
+---
+
+## 8. Change Log & Evolution
+
+| Version | Date | Changes |
+|---------|------|---------|
+| 1.0 | 2026-03-24 | Initial AI specification document created |
+
+---
+
+## 9. Quick Reference
+
+### Essential Commands
+
+```bash
+# Compile all Java files
+javac *.java
+
+# Run the program
+java Main
+
+# Commit exercise completion
+git add *.java && git commit -m "exercise-<N>: description"
+
+# Check git status
+git status
+git log --oneline
+```
+
+### Key Classes Checklist
+
+- [ ] BankAccount (base class)
+- [ ] SavingsAccount (extends BankAccount)
+- [ ] CheckingAccount (extends BankAccount)
+- [ ] BankCustomer (manages accounts)
+- [ ] Transaction history tracking in BankAccount
+
+### Key Methods Checklist
+
+- [ ] deposit(double)
+- [ ] withdraw(double)
+- [ ] recordTransaction(String)
+- [ ] getTransactionHistory()
+- [ ] getBalance() / setters
+- [ ] totalBalance() in BankCustomer
+- [ ] generateReport() in BankCustomer
+- [ ] toString() overrides
+
+---
+
+**END OF AI SPECIFICATION**
+
+🔗 **Related Documentation:**
+- [README.md](../README.md) — Exercise descriptions
+- [Main.java](../Main.java) — Entry point and demonstration code
+- [Person.java](../Person.java) — Reference example class
+
+---
+
+*Last Reviewed: March 24, 2026*  
+*Document Owner: AI Specification System*
