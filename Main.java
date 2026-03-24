@@ -23,6 +23,17 @@ public class Main {
         // Exercise 2: Creating a Savings Account
         // Create a SavingsAccount instance
         // Perform deposit operations with interest
+        System.out.println("\n--- Exercise 2: Savings Account ---");
+        SavingsAccount savingsAccount = new SavingsAccount("SAV001", 1000, 0.05);
+        System.out.println("Account: " + savingsAccount.getAccountNumber() + " | Initial Balance: $" + savingsAccount.getBalance() + " | Interest Rate: 5%");
+        
+        System.out.println("\nDeposit #1: $100");
+        savingsAccount.deposit(100);  // $100 deposit + 5% interest = $105 added
+        System.out.println("Balance after deposit: $" + savingsAccount.getBalance());
+        
+        System.out.println("\nDeposit #2: $200");
+        savingsAccount.deposit(200);  // $200 deposit + 5% interest = $210 added
+        System.out.println("Balance after deposit: $" + savingsAccount.getBalance());
 
         // Exercise 3: Creating a Checking Account
         // Create a CheckingAccount instance
