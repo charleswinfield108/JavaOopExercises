@@ -73,4 +73,14 @@ public class BankAccount {
     public String getAccountNumber() {
         return accountNumber;
     }
+    
+    /**
+     * Protected helper method to update balance directly.
+     * Used by subclasses that need custom withdrawal/deposit logic (e.g., overdraft protection).
+     * 
+     * @param newBalance The new balance to set
+     */
+    protected void setBalance(double newBalance) {
+        this.balance = newBalance;
+    }
 }
