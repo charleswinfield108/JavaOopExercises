@@ -38,12 +38,53 @@ public class Main {
         // Exercise 3: Creating a Checking Account
         // Create a CheckingAccount instance
         // Perform withdrawal operations with overdraft
+        System.out.println("\n--- Exercise 3: Checking Account ---");
+        CheckingAccount checkingAccount = new CheckingAccount("CHK001", 500, 200);
+        System.out.println("Account: " + checkingAccount.getAccountNumber() + " | Initial Balance: $" + checkingAccount.getBalance() + " | Overdraft Limit: $" + checkingAccount.getOverdraftLimit());
+        System.out.println("Total Available (Balance + Overdraft): $" + (checkingAccount.getBalance() + checkingAccount.getOverdraftLimit()));
+        
+        System.out.println("\nWithdrawal #1: $300 (within balance)");
+        checkingAccount.withdraw(300);  // $500 - $300 = $200 (within balance)
+        System.out.println("Balance after withdrawal: $" + checkingAccount.getBalance());
+        
+        System.out.println("\nWithdrawal #2: $250 (uses overdraft)");
+        checkingAccount.withdraw(250);  // $200 - $250 = -$50 (uses overdraft protection)
+        System.out.println("Balance after withdrawal: $" + checkingAccount.getBalance());
+        
+        System.out.println("\nWithdrawal #3: $200 (exceeds overdraft limit)");
+        checkingAccount.withdraw(200);  // Would be -$250, exceeds -$200 limit, REJECTED
+        System.out.println("Balance after withdrawal attempt: $" + checkingAccount.getBalance());
 
         // Exercise 4: Managing Customer's Accounts
         // Create a BankCustomer instance
         // Add multiple accounts and display total balance
+        System.out.println("\n--- Exercise 4: Managing Customer's Accounts ---");
+        BankCustomer customer = new BankCustomer("John Doe");
+        System.out.println("Customer: " + customer.getName());
+        
+        // Create and add multiple accounts of different types
+        BankAccount account2 = new BankAccount("ACC002", 1000);
+        customer.addAccount(account2);
+        
+        SavingsAccount savingsAccount2 = new SavingsAccount("SAV002", 2000, 0.05);
+        customer.addAccount(savingsAccount2);
+        
+        CheckingAccount checkingAccount2 = new CheckingAccount("CHK002", 500, 200);
+        customer.addAccount(checkingAccount2);
+        
+        // Display individual account balances
+        System.out.println("\nIndividual Account Balances:");
+        int accountNum = 1;
+        for (BankAccount acc : customer.getAccounts()) {
+            System.out.println("  Account " + accountNum + " (" + acc.getAccountNumber() + "): $" + acc.getBalance());
+            accountNum++;
+        }
+        
+        // Display total balance across all accounts
+        System.out.println("\nTotal Balance Across All Accounts: $" + customer.totalBalance());
 
         // Exercise 5: Transaction History
+
         // Add transactions to accounts and retrieve history
 
         // Exercise 6: Generate Banking Report
