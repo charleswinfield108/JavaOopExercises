@@ -138,6 +138,35 @@ public class Main {
 
         // Exercise 7: Update Interest Rates
         // Update the interest rate and observe calculations
+        System.out.println("\n--- Exercise 7: Update Interest Rates ---");
+        SavingsAccount rateAccount = new SavingsAccount("SAV007", 1000, 0.05);
+        System.out.println("Account: " + rateAccount.getAccountNumber() + " | Initial Balance: $" + rateAccount.getBalance() + " | Initial Rate: 5%");
+        
+        System.out.println("\nDeposit #1: $100 at 5% interest rate");
+        rateAccount.deposit(100);
+        System.out.println("Balance after deposit: $" + rateAccount.getBalance());
+        
+        System.out.println("\nChanging interest rate from 5% to 10%:");
+        rateAccount.updateInterestRate(0.10);
+        
+        System.out.println("\nDeposit #2: $100 at 10% interest rate");
+        rateAccount.deposit(100);
+        System.out.println("Balance after deposit: $" + rateAccount.getBalance());
+        
+        System.out.println("\nChanging interest rate from 10% to 3%:");
+        rateAccount.updateInterestRate(0.03);
+        
+        System.out.println("\nDeposit #3: $100 at 3% interest rate");
+        rateAccount.deposit(100);
+        System.out.println("Balance after deposit: $" + rateAccount.getBalance());
+        
+        System.out.println("\nFinal Account Balance: $" + rateAccount.getBalance());
+        System.out.println("Transaction History:");
+        int txNum = 1;
+        for (String tx : rateAccount.getTransactionHistory()) {
+            System.out.println("  " + txNum + ". " + tx);
+            txNum++;
+        }
 
         // Exercise 8: Override Withdrawal Method
         // Demonstrate overridden withdrawal method

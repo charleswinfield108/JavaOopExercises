@@ -61,6 +61,18 @@ public class SavingsAccount extends BankAccount {
     }
     
     /**
+     * Updates the interest rate for this savings account.
+     * The new rate takes effect immediately for all subsequent deposits.
+     * Previous balance and transactions are not affected.
+     * 
+     * @param newRate The new interest rate as a decimal (e.g., 0.05 for 5%)
+     */
+    public void updateInterestRate(double newRate) {
+        System.out.println("Interest Rate Updated: " + (interestRate * 100) + "% → " + (newRate * 100) + "%");
+        interestRate = newRate;
+    }
+    
+    /**
      * Override toString() to display savings account information including interest rate.
      * 
      * @return String representation of savings account
