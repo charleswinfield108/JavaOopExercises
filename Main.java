@@ -169,7 +169,23 @@ public class Main {
         }
 
         // Exercise 8: Override Withdrawal Method
-        // Demonstrate overridden withdrawal method
+        // Demonstrate overridden withdrawal method with withdrawal limit enforcement
+        System.out.println("\n--- Exercise 8: Withdrawal Limits (Overdraft Restriction) ---");
+        CheckingAccount limitAccount = new CheckingAccount("CHK008", 100, 200);
+        System.out.println("Account: " + limitAccount.getAccountNumber() + " | Initial Balance: $" + limitAccount.getBalance() + " | Overdraft Limit: $" + limitAccount.getOverdraftLimit());
+        System.out.println("Total Available (Balance + Overdraft): $" + (limitAccount.getBalance() + limitAccount.getOverdraftLimit()));
+        
+        System.out.println("\nWithdrawal #1: $150 (within total available of $300)");
+        limitAccount.withdraw(150);  // $100 + $200 = $300 available; $150 allowed
+        System.out.println("Balance after withdrawal: $" + limitAccount.getBalance());
+        
+        System.out.println("\nWithdrawal #2: $200 (uses overdraft, at exact limit)");
+        limitAccount.withdraw(200);  // Total available now $150; $200 exceeds limit
+        System.out.println("Balance after withdrawal: $" + limitAccount.getBalance());
+        
+        System.out.println("\nWithdrawal #3: $50 (should exceed the remaining limit)");
+        limitAccount.withdraw(50);  // Should be rejected
+        System.out.println("Balance after attempted withdrawal: $" + limitAccount.getBalance());
 
         // Complete all exercises and print results
     }
