@@ -120,6 +120,21 @@ public class Main {
 
         // Exercise 6: Generate Banking Report
         // Generate and display a customer's banking report
+        System.out.println("\n--- Exercise 6: Generate Banking Report ---");
+        BankCustomer reportCustomer = new BankCustomer("Alice Johnson");
+        
+        // Create and add different account types
+        BankAccount regAccount = new BankAccount("ACC100", 2500);
+        reportCustomer.addAccount(regAccount);
+        
+        SavingsAccount savAccount = new SavingsAccount("SAV100", 5000, 0.04);
+        reportCustomer.addAccount(savAccount);
+        
+        CheckingAccount chkAccount = new CheckingAccount("CHK100", 1500, 500);
+        reportCustomer.addAccount(chkAccount);
+        
+        // Generate and display the banking report using toString() overrides
+        reportCustomer.generateReport();
 
         // Exercise 7: Update Interest Rates
         // Update the interest rate and observe calculations

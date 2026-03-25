@@ -72,4 +72,14 @@ public class CheckingAccount extends BankAccount {
     public double getOverdraftLimit() {
         return overdraftLimit;
     }
+    
+    /**
+     * Override toString() to display checking account information including overdraft limit.
+     * 
+     * @return String representation of checking account
+     */
+    @Override
+    public String toString() {
+        return "CheckingAccount{accountNumber='" + getAccountNumber() + "', balance=$" + getBalance() + ", overdraftLimit=$" + overdraftLimit + "}";
+    }
 }

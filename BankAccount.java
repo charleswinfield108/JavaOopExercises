@@ -97,6 +97,17 @@ public class BankAccount {
     }
     
     /**
+     * Override toString() to display account information in readable format.
+     * Used by generateReport() and System.out.println().
+     * 
+     * @return String representation of account
+     */
+    @Override
+    public String toString() {
+        return "BankAccount{accountNumber='" + accountNumber + "', balance=$" + balance + "}";
+    }
+    
+    /**
      * Records a transaction to the transaction history.
      * This is a private method called internally after successful transactions.
      * 

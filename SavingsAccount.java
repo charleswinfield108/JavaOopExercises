@@ -59,4 +59,14 @@ public class SavingsAccount extends BankAccount {
     public double getInterestRate() {
         return interestRate;
     }
+    
+    /**
+     * Override toString() to display savings account information including interest rate.
+     * 
+     * @return String representation of savings account
+     */
+    @Override
+    public String toString() {
+        return "SavingsAccount{accountNumber='" + getAccountNumber() + "', balance=$" + getBalance() + ", interestRate=" + (interestRate * 100) + "%}";
+    }
 }

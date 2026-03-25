@@ -69,4 +69,35 @@ public class BankCustomer {
     public List<BankAccount> getAccounts() {
         return accounts;
     }
+    
+    /**
+     * Generates and displays a comprehensive banking report for the customer.
+     * Shows customer name, all accounts with their details, individual balances, and total balance.
+     * Uses toString() method from each account for polymorphic display.
+     */
+    public void generateReport() {
+        System.out.println("\n=== BANKING REPORT ===");
+        System.out.println("Customer: " + name);
+        System.out.println("\nAccounts:");
+        
+        if (accounts.isEmpty()) {
+            System.out.println("  No accounts");
+        } else {
+            for (int i = 0; i < accounts.size(); i++) {
+                BankAccount account = accounts.get(i);
+                System.out.println("  [" + (i + 1) + "] " + account.toString());
+            }
+        }
+        
+        System.out.println("\nIndividual Balances:");
+        double totalBal = 0;
+        for (int i = 0; i < accounts.size(); i++) {
+            BankAccount account = accounts.get(i);
+            System.out.println("  Account " + (i + 1) + ": $" + String.format("%.2f", account.getBalance()));
+            totalBal += account.getBalance();
+        }
+        
+        System.out.println("\nTotal Balance: $" + String.format("%.2f", totalBal));
+        System.out.println("====================\n");
+    }
 }
